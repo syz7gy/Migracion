@@ -20,10 +20,10 @@ public class FileHandler {
 	private String nombre_archivo;
 
 	public FileHandler() {
-		abrirArchivoDetexto(nombre_archivo);
+		abrirArchivoDeTexto(nombre_archivo);
 	}
 
-	public static String abrirArchivoDetexto(String nombre_archivo) {
+	public static String abrirArchivoDeTexto(String nombre_archivo) {
 		file = new File("src/co/edu/unbosque/model/persistance/" + nombre_archivo);
 		StringBuilder contenido = new StringBuilder();
 		try {
@@ -77,7 +77,7 @@ public class FileHandler {
 		
 	}
 	
-	public static Object   leerSerializado(String nombre_archivo) {
+	public static Object leerSerializado(String nombre_archivo) {
 		file = new File("src/co/edu/unbosque/model/persistance/"+ nombre_archivo);
 		try {
 		ois = new ObjectInputStream(new FileInputStream(file));

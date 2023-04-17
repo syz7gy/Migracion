@@ -61,6 +61,14 @@ public class PersonaDTO implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public String toString() {
+		return nombre + ";" + feha_nacimiento + ";" + pais + ";"
+				+ foto;
+	}
+	
+	
 	
 	
 
