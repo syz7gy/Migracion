@@ -12,13 +12,17 @@ public class PersonaDAO implements OperacionesDAO{
 	private String archivo;
 	
 	public PersonaDAO() {
-		lista = new ArrayList<>();
+		try {
+			lista = cargarDesdeArchivo();
+		} catch (lista =  e) {
+			// TODO: handle exception
+		}
 		
 	}
 	
 	private ArrayList<PersonaDTO> cargarDesdeArchivo(){
-		ArrayList<PersonaDTO> desde_archivo;
-		String contenido = FileHandler.abrirArchivoDeTexto(archivo);
+		ArrayList<PersonaDTO> desde_archivo = new ArrayList<>();
+		String contenido = FileHandler.abrirArchivoDeTexto("Personas.jpac");
 		String[] lineas = contenido.split("\n");
 		for (String linea : lineas) {
 			String[] attrs = linea.split(";");
@@ -29,8 +33,19 @@ public class PersonaDAO implements OperacionesDAO{
 			int año = Integer.parseInt(fecha[2]);
 			Date nacimiento = new Date(año - 1900, mes, dia);
 			String pais = attrs[2];
+			desde_archivo.add(new PersonaDTO(nombre, nacimiento, pais, null));
 		}
-		return null;
+		return desde_archivo;
+	}
+	
+	private void escribirEnArchivo() {
+		StringBuilder sb = new StringBuilder();
+		for(PersonaDTO p : lista) {
+			sb.append(p.getNombre());
+			sb.append(p.getFeha_nacimiento());
+			sb.append(p.getPais());
+			sb.append(p.getFoto());
+		}
 	}
 
 	public ArrayList<PersonaDTO> getLista() {
@@ -43,7 +58,6 @@ public class PersonaDAO implements OperacionesDAO{
 
 	@Override
 	public void crear(Object o) {
-		// TODO Auto-generated method stub
 		
 	}
 
