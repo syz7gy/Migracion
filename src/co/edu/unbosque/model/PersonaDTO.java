@@ -10,7 +10,7 @@ public class PersonaDTO implements Serializable{
 
 	private static final long serialVersionUID = 7236356291500839371L;
 	private String nombre;
-	private Date feha_nacimiento;
+	private Date fecha_nacimiento;
 	private String pais;
 	private Image foto;
 	
@@ -21,7 +21,7 @@ public class PersonaDTO implements Serializable{
 	public PersonaDTO(String nombre, Date feha_nacimiento, String pais, Image foto) {
 		super();
 		this.nombre = nombre;
-		this.feha_nacimiento = feha_nacimiento;
+		this.fecha_nacimiento = feha_nacimiento;
 		this.pais = pais;
 		this.foto = foto;
 	}
@@ -34,12 +34,12 @@ public class PersonaDTO implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public Date getFeha_nacimiento() {
-		return feha_nacimiento;
+	public Date getFecha_nacimiento() {
+		return fecha_nacimiento;
 	}
 
-	public void setFeha_nacimiento(Date feha_nacimiento) {
-		this.feha_nacimiento = feha_nacimiento;
+	public void setFecha_nacimiento(Date feha_nacimiento) {
+		this.fecha_nacimiento = feha_nacimiento;
 	}
 
 	public String getPais() {
@@ -64,7 +64,7 @@ public class PersonaDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return nombre + ";" + feha_nacimiento + ";" + pais + ";"
+		return nombre + ";" + fecha_nacimiento + ";" + pais + ";"
 				+ foto;
 	}
 	

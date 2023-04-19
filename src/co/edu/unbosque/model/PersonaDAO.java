@@ -3,17 +3,19 @@ package co.edu.unbosque.model;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.function.Function;
 
 import co.edu.unbosque.model.persistance.FileHandler;
 
 public class PersonaDAO implements OperacionesDAO{
 	
-	private ArrayList<PersonaDTO> lista;
-	private String archivo;
+	private List<PersonaDTO> lista;
 	
 	public PersonaDAO() {
 		try {
 			lista = cargarDesdeArchivo();
+			lista = (ArrayList<PersonaDTO>) FileHandler.leerSerializado("Personas.jpac");
 		} catch (Exception e) {
 			lista = new ArrayList<>();
 		}
@@ -39,17 +41,23 @@ public class PersonaDAO implements OperacionesDAO{
 	}
 	
 	private void escribirEnArchivo() {
-		StringBuilder sb = new StringBuilder();
-		for(PersonaDTO p : lista) {
-			sb.append(p.getNombre());
-			sb.append(p.getFeha_nacimiento());
-			sb.append(p.getPais());
-			sb.append(p.getFoto());
-		}
+//		StringBuilder sb = new StringBuilder();
+//		for(PersonaDTO p : lista) {
+//			sb.append(p.getNombre());
+//			sb.append(p.getFeha_nacimiento());
+//			sb.append(p.getPais());
+//			sb.append(p.getFoto());
+//		}
+		FileHandler.escribirSerializado("Personas.jpac", lista);
 	}
+	
+	private Function<String, PersonaDTO> mapper = linea -> {
+		String[] separar = linea.split(";");
+		return null;
+	};
 
 	public ArrayList<PersonaDTO> getLista() {
-		return lista;
+		return (ArrayList<PersonaDTO>) lista;
 	}
 
 	public void setLista(ArrayList<PersonaDTO> lista) {
@@ -58,30 +66,42 @@ public class PersonaDAO implements OperacionesDAO{
 
 	@Override
 	public void crear(Object o) {
-		
+		lista.add((PersonaDTO)o);
+		escribirEnArchivo();
 	}
 
 	@Override
 	public boolean actualizar(int index, Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		lista.set(index, (PersonaDTO)o);
+		escribirEnArchivo();
+		return true;
 	}
 
 	@Override
 	public boolean eliminar(int index) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			lista.remove(index);
+			escribirEnArchivo();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean eliminar(String name) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			int index = lista.indexOf(name);
+			lista.remove(index);
+			escribirEnArchivo();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public void mostrarTodo() {
-		// TODO Auto-generated method stub
 		
 	}
 
