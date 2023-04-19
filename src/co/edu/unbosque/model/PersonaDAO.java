@@ -14,8 +14,8 @@ public class PersonaDAO implements OperacionesDAO{
 	public PersonaDAO() {
 		try {
 			lista = cargarDesdeArchivo();
-		} catch (lista =  e) {
-			// TODO: handle exception
+		} catch (Exception e) {
+			lista = new ArrayList<>();
 		}
 		
 	}
