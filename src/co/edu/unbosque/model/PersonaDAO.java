@@ -1,21 +1,18 @@
 package co.edu.unbosque.model;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.function.Function;
 
 import co.edu.unbosque.model.persistance.FileHandler;
 
 public class PersonaDAO implements OperacionesDAO{
 	
-	private List<PersonaDTO> lista;
+	private ArrayList<PersonaDTO> lista;
 	
 	public PersonaDAO() {
 		try {
 			lista = cargarDesdeArchivo();
-			lista = (ArrayList<PersonaDTO>) FileHandler.leerSerializado("Personas.jpac");
 		} catch (Exception e) {
 			lista = new ArrayList<>();
 		}
@@ -24,7 +21,7 @@ public class PersonaDAO implements OperacionesDAO{
 	
 	private ArrayList<PersonaDTO> cargarDesdeArchivo(){
 		ArrayList<PersonaDTO> desde_archivo = new ArrayList<>();
-		String contenido = FileHandler.abrirArchivoDeTexto("Personas.jpac");
+		String contenido = (String) FileHandler.leerSerializado("Personas.jpac");
 		String[] lineas = contenido.split("\n");
 		for (String linea : lineas) {
 			String[] attrs = linea.split(";");
@@ -41,20 +38,15 @@ public class PersonaDAO implements OperacionesDAO{
 	}
 	
 	private void escribirEnArchivo() {
-//		StringBuilder sb = new StringBuilder();
-//		for(PersonaDTO p : lista) {
-//			sb.append(p.getNombre());
-//			sb.append(p.getFeha_nacimiento());
-//			sb.append(p.getPais());
-//			sb.append(p.getFoto());
-//		}
-		FileHandler.escribirSerializado("Personas.jpac", lista);
+		StringBuilder sb = new StringBuilder();
+		for(PersonaDTO p : lista) {
+			sb.append(p.getNombre() + ";");
+			sb.append(p.getFeha_nacimiento() + ";");
+			sb.append(p.getPais() + ";");
+			sb.append(p.getFoto());
+		}
+		FileHandler.escribirSerializado("Personas.jpac", sb.toString());
 	}
-	
-	private Function<String, PersonaDTO> mapper = linea -> {
-		String[] separar = linea.split(";");
-		return null;
-	};
 
 	public ArrayList<PersonaDTO> getLista() {
 		return (ArrayList<PersonaDTO>) lista;
