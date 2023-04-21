@@ -15,8 +15,8 @@ public class PanelBotones extends JPanel{
 	private JButton agregar, actualizar, eliminar, e_nombre, mostrar, m_solo, cerrar;
 	
 	public PanelBotones() {
-		setBackground(Color.white);
-		setSize(600, 500);
+		setBackground(new Color(173, 160, 51));
+//		setSize(600, 500);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setAlignmentX(CENTER_ALIGNMENT);
 		setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -24,46 +24,57 @@ public class PanelBotones extends JPanel{
 	}
 	
 	public void initComponents() {
+		Dimension size = new Dimension(100, 30);
+		Dimension size2 = new Dimension(200, 30);
+		Color color = new Color(241, 242, 192);
+		
 		agregar = new JButton("Agregar");
 		agregar.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		agregar.setBounds(450, 150, 100, 30);
+		agregar.setPreferredSize(size);
+		agregar.setBackground(color);
 		add(agregar);
 		add(Box.createVerticalGlue());
 		
 		
 		actualizar = new JButton("Actualizar");
 		actualizar.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		actualizar.setBounds(440, 200, 120, 30);
+		actualizar.setPreferredSize(size);
+		actualizar.setBackground(color);
 		add(actualizar);
 		add(Box.createVerticalGlue());
 		
 		eliminar = new JButton("Eliminar");
 		eliminar.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		eliminar.setBounds(450, 250, 100, 30);
+		eliminar.setPreferredSize(size);
+		eliminar.setBackground(color);
 		add(eliminar);
 		add(Box.createVerticalGlue());
 		
 		e_nombre = new JButton("Eliminar por nombre");
 		e_nombre.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		e_nombre.setBounds(400, 300, 200, 30);
+		e_nombre.setPreferredSize(size2);
+		e_nombre.setBackground(color);
 		add(e_nombre);
 		add(Box.createVerticalGlue());
 		
 		mostrar = new JButton("Mostrar todo");
 		mostrar.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		mostrar.setBounds(500-(150/2), 350, 150, 30);
+		mostrar.setPreferredSize(size2);
+		mostrar.setBackground(color);
 		add(mostrar);
 		add(Box.createVerticalGlue());
 		
 		m_solo = new JButton("Mostrar individuo");
 		m_solo.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		m_solo.setBounds(400, 400, 200, 30);
+		m_solo.setPreferredSize(size2);
+		m_solo.setBackground(color);
 		add(m_solo);
 		add(Box.createVerticalGlue());
 		
 		cerrar = new JButton("Cerrar programa");
 		cerrar.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		cerrar.setBounds(400, 450, 200, 30);
+		cerrar.setPreferredSize(size);
+		cerrar.setBackground(color);
 		add(cerrar);
 	}
 	

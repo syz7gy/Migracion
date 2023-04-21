@@ -12,6 +12,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	private JLabel img;
 	private PanelBotones pnlBotones;
+	private PanelDerecho pnlDerecho;
 	
 	public VentanaPrincipal() {
 		setSize(1000, 800);
@@ -27,6 +28,9 @@ public class VentanaPrincipal extends JFrame {
 		pnlBotones = new PanelBotones();
 		add(pnlBotones, BorderLayout.WEST);
 		
+		pnlDerecho = new PanelDerecho();
+		add(pnlDerecho, BorderLayout.CENTER);
+		
 		getContentPane().setBackground(new Color(146, 131, 8));
 
 		setLocationRelativeTo(null);
@@ -36,32 +40,7 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
 	
-//	private void initialize() {
-////		frame = new JFrame();
-////		frame.setBounds(100, 100, 450, 300);
-////		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//		agregar = new JButton("Tiene Padre");
-//		agregar.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//			}
-//		});
-//		GroupLayout groupLayout = new GroupLayout(getContentPane());
-//		groupLayout.setHorizontalGroup(
-//			groupLayout.createParallelGroup(Alignment.LEADING)
-//				.addGroup(groupLayout.createSequentialGroup()
-//					.addGap(244)
-//					.addComponent(agregar))
-//		);
-//		groupLayout.setVerticalGroup(
-//			groupLayout.createParallelGroup(Alignment.LEADING)
-//				.addGroup(groupLayout.createSequentialGroup()
-//					.addGap(91)
-//					.addComponent(agregar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-//					.addGap(151))
-//		);
-////		getContentPane().setLayout(groupLayout)
-//	}
+
 	
 	
 	
