@@ -61,7 +61,7 @@ public class FileHandler {
 	}
 
 	public static void escribirSerializado(String nombre_archivo, Object o) {
-		file = new  File("src/co/edu/unbosque/model/persistance/"+ nombre_archivo);
+		//file = new  File("src/co/edu/unbosque/model/persistance/"+ nombre_archivo);
 		try {
 			oos= new ObjectOutputStream(new FileOutputStream(file));
 			oos.writeObject(o);
@@ -77,11 +77,12 @@ public class FileHandler {
 	}
 	
 	public static Object leerSerializado(String nombre_archivo) {
-		file = new File("src/co/edu/unbosque/model/persistance/"+ nombre_archivo);
+		//file = new File("src/co/edu/unbosque/model/persistance/"+ nombre_archivo);
 		try {
-		ois = new ObjectInputStream(new FileInputStream(file));
+		ois = new ObjectInputStream(new FileInputStream(nombre_archivo));
 		Object o = ois.readObject();
 		ois.close();
+		return o;
 		} catch (FileNotFoundException e) {
 			System.out.println("(Serializado/Entrada) Error de lectura: Archivo no encontrado");
 			e.printStackTrace();
