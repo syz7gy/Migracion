@@ -16,7 +16,6 @@ public class PanelBotones extends JPanel{
 	
 	public PanelBotones() {
 		setBackground(new Color(173, 160, 51));
-//		setSize(600, 500);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setAlignmentX(CENTER_ALIGNMENT);
 		setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -29,6 +28,7 @@ public class PanelBotones extends JPanel{
 		Color color = new Color(241, 242, 192);
 		
 		agregar = new JButton("Agregar");
+		agregar.setFocusable(false);
 		agregar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		agregar.setPreferredSize(size);
 		agregar.setBackground(color);
@@ -37,6 +37,7 @@ public class PanelBotones extends JPanel{
 		
 		
 		actualizar = new JButton("Actualizar");
+		actualizar.setFocusable(false);
 		actualizar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		actualizar.setPreferredSize(size);
 		actualizar.setBackground(color);
@@ -44,6 +45,7 @@ public class PanelBotones extends JPanel{
 		add(Box.createVerticalGlue());
 		
 		eliminar = new JButton("Eliminar");
+		eliminar.setFocusable(false);
 		eliminar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		eliminar.setPreferredSize(size);
 		eliminar.setBackground(color);
@@ -51,6 +53,7 @@ public class PanelBotones extends JPanel{
 		add(Box.createVerticalGlue());
 		
 		e_nombre = new JButton("Eliminar por nombre");
+		e_nombre.setFocusable(false);
 		e_nombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 		e_nombre.setPreferredSize(size2);
 		e_nombre.setBackground(color);
@@ -65,6 +68,7 @@ public class PanelBotones extends JPanel{
 		add(Box.createVerticalGlue());
 		
 		m_solo = new JButton("Mostrar individuo");
+		m_solo.setFocusable(false);
 		m_solo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		m_solo.setPreferredSize(size2);
 		m_solo.setBackground(color);
@@ -72,6 +76,7 @@ public class PanelBotones extends JPanel{
 		add(Box.createVerticalGlue());
 		
 		cerrar = new JButton("Cerrar programa");
+		cerrar.setFocusable(false);
 		cerrar.setAlignmentX(Component.CENTER_ALIGNMENT);
 		cerrar.setPreferredSize(size);
 		cerrar.setBackground(color);
