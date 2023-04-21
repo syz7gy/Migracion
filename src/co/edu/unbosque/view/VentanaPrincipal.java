@@ -2,62 +2,69 @@ package co.edu.unbosque.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridBagConstraints;
-import java.awt.Toolkit;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
-public class VentanaPrincipal extends JFrame{
+
+public class VentanaPrincipal extends JFrame {
 	
-	private JButton agregar, actualizar, eliminar, e_nombre, mostrar, m_solo;
+	private JLabel img;
+	private PanelBotones pnlBotones;
 	
 	public VentanaPrincipal() {
 		setSize(1000, 800);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setResizable(false);
-		getContentPane().setLayout(null);
-		getContentPane().setBackground(Color.black);
-		initComponents();
+		setResizable(true);
+		getContentPane().setLayout(new BorderLayout(10, 10));
 		
-//		getContentPane().addComponentListener(new ComponentAdapter() {
-//			public void componentResized( e) {
-//				Component c = (agregar)e.getSource();
-//			}
-//		});
+		ImageIcon logo = new ImageIcon(getClass().getResource("/co/edu/unbosque/imagenes/migracion-logo (2).png"));
+		img = new JLabel(logo);
+		img.setBounds(10, 10, logo.getIconWidth(), logo.getIconHeight());
+		add(img, BorderLayout.NORTH);
 		
+		pnlBotones = new PanelBotones();
+		add(pnlBotones, BorderLayout.WEST);
+		
+		getContentPane().setBackground(new Color(146, 131, 8));
+
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		
+		
 	}
 	
-	public void initComponents() {
-		agregar = new JButton("Agregar");
-		agregar.setBounds(450, 85, 100, 30);
-		add(agregar);
-		
-		actualizar = new JButton("Actualizar");
-		actualizar.setBounds(440, 185, 120, 30);
-		add(actualizar);
-		
-		eliminar = new JButton("Eliminar");
-		eliminar.setBounds(450, 285, 100, 30);
-		add(eliminar);
-		
-		e_nombre = new JButton("Eliminar por nombre");
-		e_nombre.setBounds(400, 385, 200, 30);
-		add(e_nombre);
-		
-		mostrar = new JButton("Mostrar todo");
-		mostrar.setBounds(500-(150/2), 485, 150, 30);
-		add(mostrar);
-		
-		m_solo = new JButton("Mostrar individuo");
-		m_solo.setBounds(400, 585, 200, 30);
-		add(m_solo);
-		
-	}
+//	private void initialize() {
+////		frame = new JFrame();
+////		frame.setBounds(100, 100, 450, 300);
+////		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//		agregar = new JButton("Tiene Padre");
+//		agregar.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//			}
+//		});
+//		GroupLayout groupLayout = new GroupLayout(getContentPane());
+//		groupLayout.setHorizontalGroup(
+//			groupLayout.createParallelGroup(Alignment.LEADING)
+//				.addGroup(groupLayout.createSequentialGroup()
+//					.addGap(244)
+//					.addComponent(agregar))
+//		);
+//		groupLayout.setVerticalGroup(
+//			groupLayout.createParallelGroup(Alignment.LEADING)
+//				.addGroup(groupLayout.createSequentialGroup()
+//					.addGap(91)
+//					.addComponent(agregar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//					.addGap(151))
+//		);
+////		getContentPane().setLayout(groupLayout)
+//	}
+	
+	
+	
+	
 
 }

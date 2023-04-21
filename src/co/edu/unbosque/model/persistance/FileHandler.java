@@ -17,10 +17,9 @@ public class FileHandler {
 	private static PrintWriter escritor;
 	private static ObjectInputStream ois;
 	private static ObjectOutputStream oos;
-	private String nombre_archivo;
 
 	public FileHandler() {
-		abrirArchivoDeTexto(nombre_archivo);
+		
 	}
 
 	public static String abrirArchivoDeTexto(String nombre_archivo) {
@@ -43,7 +42,7 @@ public class FileHandler {
 	}
 
 	public static void escribirEnArhivo(String nombre_archivo, String contenido_escribir) {
-		file = new File("src/co/eduunbosque/model/persistanccce/ " + nombre_archivo);
+		file = new File("src/co/edu/unbosque/model/persistance/ " + nombre_archivo);
 		try {
 			escritor = new PrintWriter(file);
 			escritor.write(contenido_escribir);
@@ -110,14 +109,6 @@ public class FileHandler {
 
 	public static void setFile(File file) {
 		FileHandler.file = file;
-	}
-
-	public String getNombre_archivo() {
-		return nombre_archivo;
-	}
-
-	public void setNombre_archivo(String nombre_archivo) {
-		this.nombre_archivo = nombre_archivo;
 	}
 
 }
