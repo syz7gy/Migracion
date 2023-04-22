@@ -36,8 +36,30 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
-		
-		
+	}
+
+	public JLabel getImg() {
+		return img;
+	}
+
+	public void setImg(JLabel img) {
+		this.img = img;
+	}
+
+	public PanelBotones getPnlBotones() {
+		return pnlBotones;
+	}
+
+	public void setPnlBotones(PanelBotones pnlBotones) {
+		this.pnlBotones = pnlBotones;
+	}
+
+	public PanelDerecho getPnlDerecho() {
+		return pnlDerecho;
+	}
+
+	public void setPnlDerecho(PanelDerecho pnlDerecho) {
+		this.pnlDerecho = pnlDerecho;
 	}
 	
 

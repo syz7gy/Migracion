@@ -8,18 +8,18 @@ import java.util.function.Function;
 
 import co.edu.unbosque.model.persistance.FileHandler;
 
-public class PersonaDAO implements OperacionesDAO{
+public class NoAdmitidosDAO implements OperacionesDAO{
 	
-	private ArrayList<NoAdmitidosDTO> lista;
+	private ArrayList<NoAdmitidosDTO> lista_no;
 	
-	public PersonaDAO() {
+	public NoAdmitidosDAO() {
 		try {
-			lista = cargarDesdeArchivo();
+			lista_no = cargarDesdeArchivo();
 		} catch (Exception e) {
 			try {
 				throw new FileNotFoundException();
 			} catch (FileNotFoundException f) {
-				lista = new ArrayList<>();
+				lista_no = new ArrayList<>();
 			}
 		}
 		
@@ -27,7 +27,7 @@ public class PersonaDAO implements OperacionesDAO{
 	
 	private ArrayList<NoAdmitidosDTO> cargarDesdeArchivo(){
 		ArrayList<NoAdmitidosDTO> desde_archivo = new ArrayList<>();
-		String contenido = (String) FileHandler.leerSerializado("Personas.jpac");
+		String contenido = (String) FileHandler.abrirArchivoDeTexto("NoAdmitidos.csv");
 		String[] lineas = contenido.split("\n");
 		for (String linea : lineas) {
 			String[] attrs = linea.split(";");
@@ -44,32 +44,32 @@ public class PersonaDAO implements OperacionesDAO{
 	private void escribirEnArchivo() {
 		StringBuilder sb = new StringBuilder();
 		SimpleDateFormat simple = new SimpleDateFormat("dd/mm/yyyy");
-		for(NoAdmitidosDTO p : lista) {
+		for(NoAdmitidosDTO p : lista_no) {
 			sb.append(p.getNombre() + ";");
 			sb.append(simple.format(p.getFeha_nacimiento()) + ";");
 			sb.append(p.getPais() + ";");
 			sb.append(p.getFoto());
 		}
-		FileHandler.escribirSerializado("Personas.jpac", sb.toString());
+		FileHandler.escribirEnArhivo("NoAdmitidos.csv", sb.toString());
 	}
 
-	public ArrayList<NoAdmitidosDTO> getLista() {
-		return (ArrayList<NoAdmitidosDTO>) lista;
+	public ArrayList<NoAdmitidosDTO> getLista_no() {
+		return (ArrayList<NoAdmitidosDTO>) lista_no;
 	}
 
-	public void setLista(ArrayList<NoAdmitidosDTO> lista) {
-		this.lista = lista;
+	public void setLista_no(ArrayList<NoAdmitidosDTO> lista_no) {
+		this.lista_no = lista_no;
 	}
 
 	@Override
 	public void crear(Object o) {
-		lista.add((NoAdmitidosDTO)o);
+		lista_no.add((NoAdmitidosDTO)o);
 		escribirEnArchivo();
 	}
 
 	@Override
 	public boolean actualizar(int index, Object o) {
-		lista.set(index, (NoAdmitidosDTO)o);
+		lista_no.set(index, (NoAdmitidosDTO)o);
 		escribirEnArchivo();
 		return true;
 	}
@@ -77,7 +77,7 @@ public class PersonaDAO implements OperacionesDAO{
 	@Override
 	public boolean eliminar(int index) {
 		try {
-			lista.remove(index);
+			lista_no.remove(index);
 			escribirEnArchivo();
 			return true;
 		} catch (Exception e) {
@@ -88,8 +88,8 @@ public class PersonaDAO implements OperacionesDAO{
 	@Override
 	public boolean eliminar(String name) {
 		try {
-			int index = lista.indexOf(name);
-			lista.remove(index);
+			int index = lista_no.indexOf(name);
+			lista_no.remove(index);
 			escribirEnArchivo();
 			return true;
 		} catch (Exception e) {

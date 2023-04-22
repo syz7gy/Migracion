@@ -35,4 +35,14 @@ public class PanelDerecho extends JPanel{
 		
 	}
 
+	public JLabel getBan() {
+		return ban;
+	}
+
+	public void setBan(JLabel ban) {
+		this.ban = ban;
+	}
+	
+	
+
 }

@@ -8,26 +8,26 @@ import java.util.function.Function;
 
 import co.edu.unbosque.model.persistance.FileHandler;
 
-public class PersonaDAO implements OperacionesDAO{
+public class AdmitidosDAO implements OperacionesDAO{
 	
-	private ArrayList<NoAdmitidosDTO> lista;
+	private ArrayList<AdmitidosDTO> lista_si;
 	
-	public PersonaDAO() {
+	public AdmitidosDAO() {
 		try {
-			lista = cargarDesdeArchivo();
+			lista_si = cargarDesdeArchivo();
 		} catch (Exception e) {
 			try {
 				throw new FileNotFoundException();
 			} catch (FileNotFoundException f) {
-				lista = new ArrayList<>();
+				lista_si = new ArrayList<>();
 			}
 		}
 		
 	}
 	
-	private ArrayList<NoAdmitidosDTO> cargarDesdeArchivo(){
-		ArrayList<NoAdmitidosDTO> desde_archivo = new ArrayList<>();
-		String contenido = (String) FileHandler.leerSerializado("Personas.jpac");
+	private ArrayList<AdmitidosDTO> cargarDesdeArchivo(){
+		ArrayList<AdmitidosDTO> desde_archivo = new ArrayList<>();
+		String contenido = (String) FileHandler.abrirArchivoDeTexto("Admitidos.csv");
 		String[] lineas = contenido.split("\n");
 		for (String linea : lineas) {
 			String[] attrs = linea.split(";");
@@ -36,7 +36,7 @@ public class PersonaDAO implements OperacionesDAO{
 			SimpleDateFormat simple = new SimpleDateFormat("dd/mm/yyyy");
 			simple.format(nacimiento);
 			String pais = attrs[2];
-			desde_archivo.add(new NoAdmitidosDTO(nombre, nacimiento, pais, null));
+			desde_archivo.add(new AdmitidosDTO(nombre, nacimiento, pais, null));
 		}
 		return desde_archivo;
 	}
@@ -44,32 +44,32 @@ public class PersonaDAO implements OperacionesDAO{
 	private void escribirEnArchivo() {
 		StringBuilder sb = new StringBuilder();
 		SimpleDateFormat simple = new SimpleDateFormat("dd/mm/yyyy");
-		for(NoAdmitidosDTO p : lista) {
-			sb.append(p.getNombre() + ";");
-			sb.append(simple.format(p.getFeha_nacimiento()) + ";");
-			sb.append(p.getPais() + ";");
-			sb.append(p.getFoto());
+		for(AdmitidosDTO a : lista_si) {
+			sb.append(a.getNombre() + ";");
+			sb.append(a.getFeha_nacimiento() + ";");
+			sb.append(simple.format(a.getFeha_nacimiento())+ ";");
+			sb.append(a.getFoto());
 		}
-		FileHandler.escribirSerializado("Personas.jpac", sb.toString());
+		FileHandler.escribirEnArhivo("Admitidos.csv", sb.toString());
 	}
 
-	public ArrayList<NoAdmitidosDTO> getLista() {
-		return (ArrayList<NoAdmitidosDTO>) lista;
+	public ArrayList<AdmitidosDTO> getLista_si() {
+		return (ArrayList<AdmitidosDTO>) lista_si;
 	}
 
-	public void setLista(ArrayList<NoAdmitidosDTO> lista) {
-		this.lista = lista;
+	public void setLista_si(ArrayList<AdmitidosDTO> lista_si) {
+		this.lista_si = lista_si;
 	}
 
 	@Override
 	public void crear(Object o) {
-		lista.add((NoAdmitidosDTO)o);
+		lista_si.add((AdmitidosDTO)o);
 		escribirEnArchivo();
 	}
 
 	@Override
 	public boolean actualizar(int index, Object o) {
-		lista.set(index, (NoAdmitidosDTO)o);
+		lista_si.set(index, (AdmitidosDTO)o);
 		escribirEnArchivo();
 		return true;
 	}
@@ -77,7 +77,7 @@ public class PersonaDAO implements OperacionesDAO{
 	@Override
 	public boolean eliminar(int index) {
 		try {
-			lista.remove(index);
+			lista_si.remove(index);
 			escribirEnArchivo();
 			return true;
 		} catch (Exception e) {
@@ -88,8 +88,8 @@ public class PersonaDAO implements OperacionesDAO{
 	@Override
 	public boolean eliminar(String name) {
 		try {
-			int index = lista.indexOf(name);
-			lista.remove(index);
+			int index = lista_si.indexOf(name);
+			lista_si.remove(index);
 			escribirEnArchivo();
 			return true;
 		} catch (Exception e) {
@@ -104,8 +104,11 @@ public class PersonaDAO implements OperacionesDAO{
 
 	@Override
 	public String mostrar() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder sb = new StringBuilder();
+		for(AdmitidosDTO a : lista_si) {
+			sb.append(a.toString());
+		}
+		return sb.toString();
 	}
 
 }

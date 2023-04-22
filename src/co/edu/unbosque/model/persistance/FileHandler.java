@@ -34,6 +34,11 @@ public class FileHandler {
 		} catch (FileNotFoundException e) {
 			System.out.println("Error de lectura: Archivo no encontrado");
 			e.printStackTrace();
+			try {
+				file.createNewFile();
+			} catch (IOException io) {
+				io.printStackTrace();
+			}
 		} catch (IOException io) {
 			System.out.println("Error de lectura: Revise permisos.");
 			io.printStackTrace();
